@@ -1,0 +1,165 @@
+//index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Score Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Student Score Calculator</h1>
+    <div class="form-group">
+      <label for="webObtained">Web Development (Obtained Marks):</label>
+      <input type="number" id="webObtained" placeholder="Enter obtained marks">
+    </div>
+
+    <div class="form-group">
+      <label for="webMax">Web Development (Max Marks):</label>
+      <input type="number" id="webMax" placeholder="Enter max marks">
+    </div>
+
+    <div class="form-group">
+      <label for="seObtained">Software Engineering (Obtained Marks):</label>
+      <input type="number" id="seObtained" placeholder="Enter obtained marks">
+    </div>
+
+    <div class="form-group">
+      <label for="seMax">Software Engineering (Max Marks):</label>
+      <input type="number" id="seMax" placeholder="Enter max marks">
+    </div>
+
+    <div class="form-group">
+      <label for="dbObtained">Database Systems (Obtained Marks):</label>
+      <input type="number" id="dbObtained" placeholder="Enter obtained marks">
+    </div>
+
+    <div class="form-group">
+      <label for="dbMax">Database Systems (Max Marks):</label>
+      <input type="number" id="dbMax" placeholder="Enter max marks">
+    </div>
+
+    <div class="form-group">
+      <label for="psObtained">Problem Solving (Obtained Marks):</label>
+      <input type="number" id="psObtained" placeholder="Enter obtained marks">
+    </div>
+
+    <div class="form-group">
+      <label for="psMax">Problem Solving (Max Marks):</label>
+      <input type="number" id="psMax" placeholder="Enter max marks">
+    </div>
+
+    <button onclick="calculateScore()">Calculate Score</button>
+    <div id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+//script.js
+function calculateScore() {
+  const webObtained = parseInt(document.getElementById('webObtained').value) || 0;
+  const webMax = parseInt(document.getElementById('webMax').value) || 0;
+
+  const seObtained = parseInt(document.getElementById('seObtained').value) || 0;
+  const seMax = parseInt(document.getElementById('seMax').value) || 0;
+
+  const dbObtained = parseInt(document.getElementById('dbObtained').value) || 0;
+  const dbMax = parseInt(document.getElementById('dbMax').value) || 0;
+
+  const psObtained = parseInt(document.getElementById('psObtained').value) || 0;
+  const psMax = parseInt(document.getElementById('psMax').value) || 0;
+
+  const totalObtained = webObtained + seObtained + dbObtained + psObtained;
+  const totalMax = webMax + seMax + dbMax + psMax;
+
+  const percentage = totalMax > 0 ? ((totalObtained / totalMax) * 100).toFixed(2) : 0;
+
+  document.getElementById('result').innerHTML = `
+    <h2>Results</h2>
+    <p><strong>Total Obtained Marks:</strong> ${totalObtained}</p>
+    <p><strong>Total Maximum Marks:</strong> ${totalMax}</p>
+    <p><strong>Percentage:</strong> ${percentage}%</p>
+  `;
+}
+//style.css
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.container {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Labels */
+label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 15px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Result Box */
+#result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e9f6ff;
+  border: 1px solid #cce5ff;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: left;
+}
