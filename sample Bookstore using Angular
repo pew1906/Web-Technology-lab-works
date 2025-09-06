@@ -1,0 +1,32 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CartService } from '../cart.service';
+
+@Component({
+  selector: 'app-books',
+  standalone: true,
+  imports: [CommonModule],
+  providers: [CartService],
+  template: `
+    <h2>Books</h2>
+    <ul>
+      <li *ngFor="let book of books">
+        {{ book.title }} - \${{ book.price }}
+        <button (click)="addToCart(book)">Add to Cart</button>
+      </li>
+    </ul>
+  `,
+})
+export class BooksComponent {
+  books = [
+    { title: 'Book 1', price: 10 },
+    { title: 'Book 2', price: 15 },
+    { title: 'Book 3', price: 20 },
+  ];
+}
+constructor(private cartService: CartService) {}
+
+addToCart(book: any) {
+  this.cartService.addToCart(book);
+  alert(`${book.title} added to cart!`);
+}
